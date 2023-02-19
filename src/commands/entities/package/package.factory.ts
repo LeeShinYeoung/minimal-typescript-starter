@@ -1,6 +1,6 @@
 import { Package, PackageProperties } from './package'
 
-export interface packageFactoryProperties {
+export interface packageFactoryParameters {
   packageName: string
   packageDescription?: string
   packageAddition?: string[]
@@ -11,7 +11,7 @@ export class packageFactory {
     packageName,
     packageDescription,
     packageAddition
-  }: packageFactoryProperties) {
+  }: packageFactoryParameters) {
     const properties: PackageProperties = {}
 
     properties.name = packageName
