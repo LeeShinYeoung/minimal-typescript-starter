@@ -1,6 +1,6 @@
 import { Answers, prompt } from 'prompts'
 import { GenerateDefaultCommand } from '../commands/generate-default.command'
-import { ExtensionPrompt } from './prompts/extension'
+import { PackageAddition } from './prompts/package-addition'
 import { PackageDescriptionPrompt } from './prompts/package-description'
 import { PackageNamePrompt } from './prompts/package-name'
 
@@ -11,7 +11,7 @@ export class PromptController {
     return prompt([
       PackageNamePrompt,
       PackageDescriptionPrompt,
-      ExtensionPrompt
+      PackageAddition
     ])
   }
 

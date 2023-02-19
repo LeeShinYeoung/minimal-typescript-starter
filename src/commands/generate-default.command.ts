@@ -10,11 +10,12 @@ export class GenerateDefaultCommandImpl implements GenerateDefaultCommand {
   constructor(private readonly fileManager: FileMananger) {}
 
   async execute(response: Answers<string>) {
-    const { packageName, packageDescription } = response
+    const { packageName, packageDescription, packageAddition } = response
 
     const packageEntity = packageFactory.create({
       packageName,
-      packageDescription
+      packageDescription,
+      packageAddition
     })
     this.fileManager.saveFile('package.json', packageEntity.toString())
   }
