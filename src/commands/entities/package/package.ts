@@ -10,6 +10,8 @@ export interface PackageProperties {
 }
 
 export class Package {
+  public readonly filename = 'package.json'
+
   constructor(private readonly properties: PackageProperties) {}
 
   toString() {

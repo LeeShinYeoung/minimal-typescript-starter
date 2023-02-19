@@ -17,6 +17,6 @@ export class GenerateDefaultCommandImpl implements GenerateDefaultCommand {
       packageDescription,
       packageAddition
     })
-    this.fileManager.saveFile('package.json', packageEntity.toString())
+    this.fileManager.saveFile(packageEntity.filename, packageEntity.toString())
   }
 }
