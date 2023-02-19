@@ -29,7 +29,11 @@ export class EslintFactory {
   private static getExtends(
     packageAddition: EslintFactoryParameters['packageAddition']
   ) {
-    const extend: EslintProperties['extends'] = ['eslint:recommended']
+    const extend: EslintProperties['extends'] = [
+      'eslint:recommended',
+      'plugin:@typescript-eslint/eslint-recommended',
+      'plugin:@typescript-eslint/recommended'
+    ]
 
     if (packageAddition?.includes('prettier')) extend.push('prettier')
 
