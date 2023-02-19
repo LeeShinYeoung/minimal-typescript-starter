@@ -5,7 +5,9 @@ import { PackageDescriptionPrompt } from './prompts/package-description'
 import { PackageNamePrompt } from './prompts/package-name'
 
 export class PromptController {
-  constructor(private readonly generateCommand: GenerateDefaultCommand) {}
+  constructor(
+    private readonly generateDefaultCommand: GenerateDefaultCommand
+  ) {}
 
   async receive() {
     return prompt([
@@ -16,6 +18,6 @@ export class PromptController {
   }
 
   async control(response: Answers<string>) {
-    return this.generateCommand.execute(response)
+    return this.generateDefaultCommand.execute(response)
   }
 }

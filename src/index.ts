@@ -3,8 +3,8 @@ import { GenerateDefaultCommandImpl } from './commands/generate-default.command'
 import { PromptController } from './controllers/prompt.controller'
 
 const fileManager = new FileManangerImpl()
-const generateCommand = new GenerateDefaultCommandImpl(fileManager)
-const promptController = new PromptController(generateCommand)
+const generateDefaultCommand = new GenerateDefaultCommandImpl(fileManager)
+const promptController = new PromptController(generateDefaultCommand)
 
 promptController
   .receive()
