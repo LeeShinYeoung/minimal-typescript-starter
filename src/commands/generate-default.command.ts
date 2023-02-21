@@ -3,6 +3,7 @@ import { FileMananger } from '../libs/file-manager'
 import { EslintFactory } from './entities/eslint/eslint.factory'
 import { packageFactory } from './entities/package/package.factory'
 import { PrettierFactory } from './entities/prettier/prettier.factory'
+import { ReadmeFactory } from './entities/readme/readme.factory'
 import { TsconfigFactory } from './entities/tsconfig/tsconfig.factory'
 
 export interface GenerateDefaultCommand {
@@ -27,6 +28,12 @@ export class GenerateDefaultCommandImpl implements GenerateDefaultCommand {
       tsconfigEntity.filename,
       tsconfigEntity.toString()
     )
+
+    const readmeEntity = ReadmeFactory.create({
+      packageName,
+      packageDescription
+    })
+    this.fileManager.saveFile(readmeEntity.filename, readmeEntity.toString())
 
     if (packageAddition?.includes('prettier')) {
       const prettierEntity = PrettierFactory.create()

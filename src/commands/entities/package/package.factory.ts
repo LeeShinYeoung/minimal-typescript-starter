@@ -70,7 +70,7 @@ export class packageFactory {
 export const PackageScripts = {
   start: 'nodemon --watch \'src/**/*.ts\' --exec "ts-node" src/index.ts',
   build: 'tsc',
-  eslint: 'npx eslint src/**/*.ts',
+  eslint: 'eslint src/**/*.ts',
   prettier: "prettier --config .prettierrc 'src/**/*.ts' --write"
 }
 
