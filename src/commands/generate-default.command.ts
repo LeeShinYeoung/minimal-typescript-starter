@@ -1,6 +1,7 @@
 import { Answers } from 'prompts'
 import { FileMananger } from '../libs/file-manager'
 import { EslintFactory } from './entities/eslint/eslint.factory'
+import { GitignoreFactory } from './entities/gitignore/gitignore.factory'
 import { packageFactory } from './entities/package/package.factory'
 import { PrettierFactory } from './entities/prettier/prettier.factory'
 import { ReadmeFactory } from './entities/readme/readme.factory'
@@ -34,6 +35,9 @@ export class GenerateDefaultCommandImpl implements GenerateDefaultCommand {
       packageDescription
     })
     this.fileManager.saveFile(readmeEntity.filename, readmeEntity.toString())
+
+    const gitignore = GitignoreFactory.create()
+    this.fileManager.saveFile(gitignore.filename, gitignore.toString())
 
     if (packageAddition?.includes('prettier')) {
       const prettierEntity = PrettierFactory.create()
