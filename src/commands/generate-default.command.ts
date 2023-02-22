@@ -1,5 +1,6 @@
 import { Answers } from 'prompts'
 import { FileMananger } from '../libs/file-manager'
+import { NpmManager } from '../libs/npm-manager'
 import { EslintFactory } from './entities/eslint/eslint.factory'
 import { GitignoreFactory } from './entities/gitignore/gitignore.factory'
 import { packageFactory } from './entities/package/package.factory'
@@ -12,17 +13,25 @@ export interface GenerateDefaultCommand {
 }
 
 export class GenerateDefaultCommandImpl implements GenerateDefaultCommand {
-  constructor(private readonly fileManager: FileMananger) {}
+  constructor(
+    private readonly fileManager: FileMananger,
+    private readonly npmManager: NpmManager
+  ) {}
 
   async execute(response: Answers<string>) {
     const { packageName, packageDescription, packageAddition } = response
+
+    this.fileManager.checkDirectory()
 
     const packageEntity = packageFactory.create({
       packageName,
       packageDescription,
       packageAddition
     })
-    this.fileManager.saveFile(packageEntity.filename, packageEntity.toString())
+    await this.fileManager.saveFile(
+      packageEntity.filename,
+      packageEntity.toString()
+    )
 
     const tsconfigEntity = TsconfigFactory.create()
     this.fileManager.saveFile(
@@ -34,14 +43,17 @@ export class GenerateDefaultCommandImpl implements GenerateDefaultCommand {
       packageName,
       packageDescription
     })
-    this.fileManager.saveFile(readmeEntity.filename, readmeEntity.toString())
+    await this.fileManager.saveFile(
+      readmeEntity.filename,
+      readmeEntity.toString()
+    )
 
     const gitignore = GitignoreFactory.create()
-    this.fileManager.saveFile(gitignore.filename, gitignore.toString())
+    await this.fileManager.saveFile(gitignore.filename, gitignore.toString())
 
     if (packageAddition?.includes('prettier')) {
       const prettierEntity = PrettierFactory.create()
-      this.fileManager.saveFile(
+      await this.fileManager.saveFile(
         prettierEntity.filename,
         prettierEntity.toString()
       )
@@ -49,7 +61,12 @@ export class GenerateDefaultCommandImpl implements GenerateDefaultCommand {
 
     if (packageAddition?.includes('eslint')) {
       const eslintEntity = EslintFactory.create({ packageAddition })
-      this.fileManager.saveFile(eslintEntity.filename, eslintEntity.toString())
+      await this.fileManager.saveFile(
+        eslintEntity.filename,
+        eslintEntity.toString()
+      )
     }
+
+    await this.npmManager.install([...packageEntity.devDependencyList])
   }
 }
