@@ -10,7 +10,9 @@
     "lint": "npx eslint src/**/*.ts"
   },
   "author": "LeeShinYeoung",
-  "license": "ISC",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "bin": "dist/index.js",
   "devDependencies": {
     "@types/prompts": "^2.4.2",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
@@ -25,5 +27,12 @@
   },
   "dependencies": {
     "prompts": "^2.4.2"
-  }
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "typescript",
+    "starter",
+    "minimal"
+  ]
 }
