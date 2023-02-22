@@ -18,7 +18,7 @@ export class packageFactory {
     properties.version = '1.0.0'
     properties.description = packageDescription || ''
     properties.scripts = this.getScripts(packageAddition)
-    properties.dependencies = this.getDependencies(packageAddition)
+    properties.devDependencies = this.getDevDependencies(packageAddition)
 
     return new Package(properties)
   }
@@ -40,27 +40,27 @@ export class packageFactory {
     return scripts
   }
 
-  private static getDependencies(packageAddition?: string[]) {
+  private static getDevDependencies(packageAddition?: string[]) {
     const dependencies: PackageProperties['dependencies'] = {}
 
-    dependencies['nodemon'] = PackageDependencies['nodemon']
-    dependencies['ts-node'] = PackageDependencies['ts-node']
-    dependencies['typescript'] = PackageDependencies['typescript']
+    dependencies['nodemon'] = PackageDevDependencies['nodemon']
+    dependencies['ts-node'] = PackageDevDependencies['ts-node']
+    dependencies['typescript'] = PackageDevDependencies['typescript']
 
     if (packageAddition?.includes('prettier')) {
-      dependencies['prettier'] = PackageDependencies['prettier']
+      dependencies['prettier'] = PackageDevDependencies['prettier']
     }
 
     if (packageAddition?.includes('eslint')) {
       dependencies['@typescript-eslint/eslint-plugin'] =
-        PackageDependencies['@typescript-eslint/eslint-plugin']
+        PackageDevDependencies['@typescript-eslint/eslint-plugin']
       dependencies['@typescript-eslint/parser'] =
-        PackageDependencies['@typescript-eslint/parser']
-      dependencies['eslint'] = PackageDependencies['eslint']
+        PackageDevDependencies['@typescript-eslint/parser']
+      dependencies['eslint'] = PackageDevDependencies['eslint']
       dependencies['eslint-config-prettier'] =
-        PackageDependencies['eslint-config-prettier']
+        PackageDevDependencies['eslint-config-prettier']
       dependencies['eslint-plugin-prettier'] =
-        PackageDependencies['eslint-plugin-prettier']
+        PackageDevDependencies['eslint-plugin-prettier']
     }
 
     return dependencies
@@ -74,14 +74,14 @@ export const PackageScripts = {
   prettier: "prettier --config .prettierrc 'src/**/*.ts' --write"
 }
 
-export const PackageDependencies = {
-  nodemon: '^2.0.20',
-  'ts-node': '^10.9.1',
-  typescript: '^4.8.4',
-  '@typescript-eslint/eslint-plugin': '^5.40.0',
-  '@typescript-eslint/parser': '^5.40.0',
-  eslint: '^8.25.0',
-  'eslint-config-prettier': '^8.5.0',
-  'eslint-plugin-prettier': '^4.2.1',
-  prettier: '^2.7.1'
+export const PackageDevDependencies = {
+  nodemon: '',
+  'ts-node': '',
+  typescript: '',
+  '@typescript-eslint/eslint-plugin': '',
+  '@typescript-eslint/parser': '',
+  eslint: '',
+  'eslint-config-prettier': '',
+  'eslint-plugin-prettier': '',
+  prettier: ''
 }

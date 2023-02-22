@@ -14,7 +14,15 @@ export class Package {
 
   constructor(private readonly properties: PackageProperties) {}
 
-  toString() {
+  get dependencyList(): string[] {
+    return Object.keys(this.properties.dependencies || {})
+  }
+
+  get devDependencyList(): string[] {
+    return Object.keys(this.properties.devDependencies || {})
+  }
+
+  toString(): string {
     return JSON.stringify(this.properties, null, 2)
   }
 }
