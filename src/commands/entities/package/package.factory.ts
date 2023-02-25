@@ -57,6 +57,12 @@ export class packageFactory {
       dependencies['@typescript-eslint/parser'] =
         PackageDevDependencies['@typescript-eslint/parser']
       dependencies['eslint'] = PackageDevDependencies['eslint']
+    }
+
+    if (
+      packageAddition?.includes('prettier') &&
+      packageAddition?.includes('eslint')
+    ) {
       dependencies['eslint-config-prettier'] =
         PackageDevDependencies['eslint-config-prettier']
       dependencies['eslint-plugin-prettier'] =
