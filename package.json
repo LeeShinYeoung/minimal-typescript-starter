@@ -1,7 +1,7 @@
 {
   "name": "minimal-typescript-starter",
   "version": "0.0.1",
-  "description": "Minimal Typescript Starter",
+  "description": "Configure a minimal TypeScript project with just one command",
   "scripts": {
     "start": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
     "s": "ts-node src/index.ts",
