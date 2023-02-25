@@ -1,7 +1,7 @@
 {
   "name": "minimal-typescript-starter",
   "description": "Configure a minimal TypeScript project with just one command",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "LeeShinYeoung",
   "license": "MIT",
   "bin": "dist/index.js",
