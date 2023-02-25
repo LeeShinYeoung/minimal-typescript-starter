@@ -34,10 +34,10 @@ export class GenerateDefaultCommandImpl implements GenerateDefaultCommand {
       packageEntity.toString()
     )
 
-    const IndexEntity = IndexFactory.create()
+    const indexEntity = IndexFactory.create()
     await this.fileManager.saveFile(
-      IndexEntity.path + '/' + IndexEntity.filename,
-      IndexEntity.toString()
+      indexEntity.path + '/' + indexEntity.filename,
+      indexEntity.toString()
     )
 
     const tsconfigEntity = TsconfigFactory.create()
