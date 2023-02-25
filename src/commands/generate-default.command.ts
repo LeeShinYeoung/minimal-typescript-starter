@@ -3,6 +3,7 @@ import { FileMananger } from '../libs/file-manager'
 import { NpmManager } from '../libs/npm-manager'
 import { EslintFactory } from './entities/eslint/eslint.factory'
 import { GitignoreFactory } from './entities/gitignore/gitignore.factory'
+import { IndexFactory } from './entities/index/index.factory'
 import { packageFactory } from './entities/package/package.factory'
 import { PrettierFactory } from './entities/prettier/prettier.factory'
 import { ReadmeFactory } from './entities/readme/readme.factory'
@@ -31,6 +32,12 @@ export class GenerateDefaultCommandImpl implements GenerateDefaultCommand {
     await this.fileManager.saveFile(
       packageEntity.filename,
       packageEntity.toString()
+    )
+
+    const IndexEntity = IndexFactory.create()
+    await this.fileManager.saveFile(
+      IndexEntity.path + '/' + IndexEntity.filename,
+      IndexEntity.toString()
     )
 
     const tsconfigEntity = TsconfigFactory.create()
