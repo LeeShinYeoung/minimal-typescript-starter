@@ -16,14 +16,6 @@ export class NpmManagerImpl {
         cwd: path
       })
 
-      command?.stdout?.on('data', (data) => {
-        console.log(`stdout: ${data}`)
-      })
-
-      command?.stderr?.on('data', (data) => {
-        console.error(`stderr: ${data}`)
-      })
-
       command.on('close', (code) => {
         if (code !== 0) {
           console.error(`npm install failed`)
