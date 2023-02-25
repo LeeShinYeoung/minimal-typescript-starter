@@ -1,5 +1,7 @@
 # minimal-typescript-starter
 
+![sample](sample.gif)
+
 This package helps you quickly set up a TypeScript project with minimal configuration.
 
 ## Usage
@@ -19,7 +21,7 @@ By default, the following files will be generated:
 - .gitignore
 - README.md
 
-You can also choose to generate additional files by selecting the following options in the prompt:
+You can also set up the following additional packages in the prompt:
 
 - .eslintrc
 - .prettierrc
