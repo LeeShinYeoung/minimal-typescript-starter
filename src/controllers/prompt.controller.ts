@@ -10,11 +10,14 @@ export class PromptController {
   ) {}
 
   async receive() {
-    return prompt([
-      PackageNamePrompt,
-      PackageDescriptionPrompt,
-      PackageAddition
-    ])
+    return prompt(
+      [PackageNamePrompt, PackageDescriptionPrompt, PackageAddition],
+      {
+        onCancel: () => {
+          process.exit()
+        }
+      }
+    )
   }
 
   async control(response: Answers<string>) {
