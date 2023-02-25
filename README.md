@@ -1,6 +1,6 @@
 # minimal-typescript-starter
 
-![sample](sample.gif)
+![sample](https://github.com/LeeShinYeoung/minimal-typescript-starter/raw/main/sample.gif)
 
 This package helps you quickly set up a TypeScript project with minimal configuration.
 
@@ -25,3 +25,7 @@ You can also set up the following additional packages in the prompt:
 
 - .eslintrc
 - .prettierrc
+
+## Links
+
+- [NPM](https://www.npmjs.com/package/minimal-typescript-starter)
