@@ -7,10 +7,10 @@ export interface FileMananger {
 }
 
 export class FileManangerImpl implements FileMananger {
-  constructor(private readonly path: string) {}
+  constructor(private readonly basePath: string) {}
 
   checkDirectory() {
-    const path = process.env.PWD + '/' + this.path
+    const path = process.env.PWD + '/' + this.basePath
 
     if (!fs.existsSync(path)) {
       fs.mkdirSync(path)
@@ -21,7 +21,13 @@ export class FileManangerImpl implements FileMananger {
     }
   }
 
-  async saveFile(filename: string, content: string) {
-    await promisify(fs.writeFile)(`${this.path}/${filename}`, content)
+  async saveFile(path: string, content: string) {
+    const directoryPath = path.replace(/^(.*\/)?[^/]*$/, '$1')
+
+    if (!fs.existsSync(directoryPath)) {
+      fs.mkdirSync(`${this.basePath}/${directoryPath}`, { recursive: true })
+    }
+
+    await promisify(fs.writeFile)(`${this.basePath}/${path}`, content)
   }
 }
