@@ -10,24 +10,25 @@ export class FileManangerImpl implements FileMananger {
   constructor(private readonly basePath: string) {}
 
   checkDirectory() {
-    const path = process.env.PWD + '/' + this.basePath
+    const basePath = process.env.PWD + '/' + this.basePath
 
-    if (!fs.existsSync(path)) {
-      fs.mkdirSync(path)
+    if (!fs.existsSync(basePath)) {
+      fs.mkdirSync(basePath)
     }
 
-    if (fs.readdirSync(path).length) {
+    if (fs.readdirSync(basePath).length) {
       throw new Error('Directory is not empty')
     }
   }
 
   async saveFile(path: string, content: string) {
+    const basePath = process.env.PWD + '/' + this.basePath
     const directoryPath = path.replace(/^(.*\/)?[^/]*$/, '$1')
 
-    if (!fs.existsSync(directoryPath)) {
-      fs.mkdirSync(`${this.basePath}/${directoryPath}`, { recursive: true })
+    if (!fs.existsSync(`${basePath}/${directoryPath}`)) {
+      fs.mkdirSync(`${basePath}/${directoryPath}`, { recursive: true })
     }
 
-    await promisify(fs.writeFile)(`${this.basePath}/${path}`, content)
+    await promisify(fs.writeFile)(`${basePath}/${path}`, content)
   }
 }
